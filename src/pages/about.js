@@ -1,17 +1,28 @@
 import React from "react"
-import { Link } from "gatsby"
+
+import { graphql } from "gatsby"
 // import Header from "../components/header"
-import Container from "../components/container"
 import Layout from "../components/layout"
 
-export default function About() {
+export default function About({ data }) {
   return (
     <Layout>
-      About <Link to="/contact/">contact</Link>
-      <Container>
-        <h1>About CSS Modules</h1>
-        <p>CSS Modules are cool</p>
-      </Container>
+      <h1>About {data.site.siteMetadata.title}</h1>
+
+      <p>
+        We're the only site running on your computer dedicated to showing the
+        best photos and videos of pandas eating lots of food.
+      </p>
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
